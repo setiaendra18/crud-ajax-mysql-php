@@ -4,5 +4,5 @@ Aplikasi sederahana CRUD (Create,Read,Update,Delete) untuk melakukan manajemen d
 <ul>
   <li>Basisdata : Mysql</li>
 <li>Backend   : PHP untuk melakukan encode data mysql menjadi JSON format</li>
-<li>Frontend  : Menggunakan library jQuery untuk melakukan AJAX yaitu menampilkan dan menanipulasi tampilan.</li>
+<li>Frontend  : Menggunakan library jQuery untuk melakukan AJAX yaitu menampilkan dan menanipulasi tampilan dan Boostrap untuk mempercantik tampilan</li>
  </ul>
