@@ -1,6 +1,6 @@
 # crud-ajax-mysql-php
 
-Aplikasi sederahana CRUD (Create,Read,Udate,Delete) untuk melakukan manajemen data Mahasiswa.
+Aplikasi sederahana CRUD (Create,Read,Update,Delete) untuk melakukan manajemen data Mahasiswa.
 <ul>
   <li>Basisdata : Mysql</li>
 <li>Backend   : PHP untuk melakukan encode data mysql menjadi JSON format</li>
