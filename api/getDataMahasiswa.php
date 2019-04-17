@@ -9,9 +9,11 @@ if (mysqli_num_rows($result) > 0)
             {
                 $data[]=$row;
             }
-            $json_data=json_encode($data);
+            $json_data=json_encode($data, JSON_PRETTY_PRINT);
             echo $json_data;
 }
 mysqli_close($conn);
+
+
 ?>
        

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>DASHBOARD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="asset/css/bootstrap.css">
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+
   <script src="asset/js/jquery-3.4.0.min.js"></script>
   <script src="asset/js/bootstrap.min.js"></script>
   <script src="app.js"></script>
 </head>
-
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">AKADEMIK</a>
+    <a class="navbar-brand" href="#">SISTEM AKADEMIK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,13 +30,7 @@
         </li>
       </ul>
     </div>
-
-
-
-
-
   </nav>
-
   <div class="container" style="margin-top:30px">
     <div class="row">
       <div class="col-sm-10 justify-content-center">
@@ -48,7 +44,7 @@
           </div>
         </div>
         <hr>
-        <table class="table table-striped border">
+        <table class="table border border-primary table-striped ">
           <thead>
             <tr>
               <th>NO</th>
@@ -59,13 +55,8 @@
             </tr>
           </thead>
           <tbody id="tabel-mahasiswa">
-
+              
           </tbody>
-
-          </tbody>
-
-
-
         </table>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah">
           TAMBAH DATA
@@ -73,8 +64,6 @@
       </div>
     </div>
   </div>
-
-
   <!-- The Modal -->
   <div class="modal" id="modal-tambah">
     <div class="modal-dialog">
@@ -85,18 +74,18 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-          <form method="POST" id="form-tambah">
+          <form method="POST" id="form-tambah" name="form-tambah">
             <div class="form-group">
               <label>NIM</label>
-              <input type="text" class="form-control" name="nim" id="nim" required>
+              <input type="text" class="form-control" name="nim" id="nim" maxlength="9" required>
             </div>
             <div class="form-group">
               <l`abel>Nama Mahasiswa</label>
-                <input type="text" class="form-control" name="nama" id="nama" required>
+                <input type="text" class="form-control" name="nama" id="nama" maxlength="25" required>
             </div>
             <div class="form-group">
-              <label for="sel1">Jurusan</label>
-              <select class="form-control" id="kode_jur" name="kode_jur">
+              <label>Jurusan</label>
+              <select class="form-control" id="kode_jur" name="kode_jur" required>
                 <option value="TI">Teknik Informatika</option>
                 <option value="SI">Sistem Informasi</option>
               </select>
@@ -119,35 +108,33 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">EDIT DATA MAHASISWA</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-
           <div class="form-group">
             <label>NIM</label>
-            <input type="text" class="form-control" name="nim" id="nim">
+            <input type="text" class="form-control" name="nim" id="nim" maxlength="9" disabled>
           </div>
           <div class="form-group">
-            <l`abel>Nama Mahasiswa</label>
-              <input type="text" class="form-control" name="nama" id="nama">
+            <label>Nama Mahasiswa</label>
+            <input type="text" class="form-control" name="update_nama" id="nama" maxlength="25">
           </div>
           <div class="form-group">
             <label for="sel1">Jurusan</label>
-            <select class="form-control" id="kode_jur">
-              <option name="TI">Teknik Informatika</option>
-              <option name="SI">Sistem Informasi</option>
+            <select class="form-control" name="update_kode_jur" id="update_kode_jur">
+              <option value="TI">Teknik Informatika</option>
+              <option value="SI">Sistem Informasi</option>
             </select>
           </div>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-warning" id="tambah-data">Perbarui</button>
+          <button type="button" class="btn btn-warning" onclick="UpdateUserDetails()">Perbarui</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+          <input type="hidden" id="nim">
         </div>
       </div>
     </div>
   </div>
 </body>
-
 </html>
