@@ -52,13 +52,14 @@ function deleteRecord(nim) {
   }
 }
 
-function GetUserDetails(nim) {
+function GetUserDetails(nim)
+{
   // Add User ID to the hidden field for furture usage
   $("#nim").val(nim);
   $.post("api/editDataMahasiswa.php", {
           nim: nim
       },
-      function (data,status) {
+      function (data) {
           // PARSE json data
           var user = JSON.parse(data);
           // Assing existing values to the modal popup fields
@@ -68,6 +69,7 @@ function GetUserDetails(nim) {
       }
   );
 }
+
 function UpdateUserDetails()
 {
   var nim = $("#nim").val();
@@ -87,15 +89,44 @@ function UpdateUserDetails()
   );
 }
 
+function cari() {
+  
+  var key = $("#input-cari").val();
+  $.ajax({
+    type: "POST",
+    url: "api/searchDataMahasiswa.php",
+    data: "key=" + key,
+    success: function (data)
+    {
+      var dataCari = JSON.parse(data);
+      var i = dataCari.length;
+      console.log(i)
+      let no=1;
+      $.each(dataCari, function(i, data)
+      {
+        console.log(data.nama)
+        $("#tabel-mahasiswa").replaceWith(
+          "<tr><td>" +
+          no++ +
+          "</td><td>" +
+          data.nim +
+          "</td><td>" +
+          data.nama +
+          "</td><td>" +
+          data.kode_jur +
+          "</td><td data-id=" +
+          data.nim +
+          '><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-edit" id="tombol-edit" onclick="GetUserDetails('+       data.nim + 
+          ')">EDIT</button> <button type="button" class="btn btn-danger btn-sm" id="tombol-hapus"  onclick="deleteRecord(' +
+          data.nim +
+          ')">HAPUS</button></td>'
+        );
+        
+      })
+    }
+  });
+}
 
-$(function()
-{
-    
-  //autocomplete
-  $("#input-cari").autocomplete({
-      source: "/searchDataMahasiswaw.php",
-      minLength: 1
-  });                
 
-});
+
   

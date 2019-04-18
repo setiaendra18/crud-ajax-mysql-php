@@ -1,26 +1,22 @@
 <?php
 include "../config/db.php";
 //Mengambil isi parameter cari
-$cari = $_GET['cari'];
+$key = $_POST['key'];
+
+
+
+ $sql = "SELECT * from tbl_mahasiswa where nama LIKE '%$key%'";
+ $result = mysqli_query($conn, $sql);
+ if (mysqli_num_rows($result) > 0) 
+ {
+             $data=array();
+             while($row = mysqli_fetch_assoc($result))
+             {
+                 $data[]=$row;
+             }
+             $json_data=json_encode($data);
+             echo $json_data;
+ }
+ mysqli_close($conn);
  
-if ( !empty ( $cari ) ) {
- 
- //Query sql untuk mencari data
- $sql = mysql_query("SELECT nama from tbl_mahasiswa where nama LIKE '%$cari%'");
- 
- //Cek apakah data ditemukan
- $row = mysql_num_rows( $sql );
- 
- //Jika ditemukan maka tampilkan
- if ( $row != 0 ) {
- 
-  while ( $r = mysql_fetch_assoc( $sql ) ) {
-   echo $r['nama'] . "
-";
-  }
- 
- //Jika tidak ditemukan tampilkan pesan berikut
- } else { echo "Tidak menemukan data"; }
- 
-}
 ?>

@@ -1,15 +1,12 @@
 <?php
 include "../config/db.php";
-
-$data = array();
-if (!empty($_GET['nama'])) {
-    $nama = strtolower(trim($_GET['nama']));
-    $sql = "SELECT name FROM tbl_mahasiswa where LOWER(name) LIKE '" .$nama. "%'";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        array_push($data, $row['nama']);
-    }
+$searchTerm = $_GET['term'];
+//get matched data from skills table
+$query = $db->query("SELECT * FROM tbl_mahasiswa WHERE nama LIKE '%".$searchTerm."%' ORDER BY nim ASC");
+while ($row = $query->fetch_assoc()) {
+    $data[] = $row['nama'];
 }
-echo json_encode($data);exit;
+//return json data
+echo json_encode($data)
 
 ?>

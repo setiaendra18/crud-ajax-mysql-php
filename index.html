@@ -6,12 +6,10 @@
   <title>DASHBOARD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="asset/css/bootstrap.css">
-  
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
 
-  <script src="asset/js/jquery-3.4.0.min.js"></script>
+  <script src="asset/js/jquery-3.4.0.js"></script>
   <script src="asset/js/bootstrap.min.js"></script>
+
   <script src="app.js"></script>
 </head>
 <body>
@@ -36,13 +34,15 @@
       <div class="col-sm-10 justify-content-center">
         <H3>DATA MAHASISWA</H3>
         <hr>
-        <div class="input-group mb-3">
+        <form method="POST">
+        <div class="input-group mb-3">        
           <input type="text" class="form-control" placeholder="Masukan Nama Mahasiswa" aria-label="Recipient's username"
-            aria-describedby="basic-addon2" id="input-cari">
+            aria-describedby="basic-addon2" id="input-cari" required>
           <div class="input-group-append">
-            <button class="btn btn-primary" type="button" id="tombol-cari">Cari</button>
+            <button class="btn btn-primary" type="button" id="tombol-cari" onclick="cari()" onkeypress="cari()">Cari</button>
           </div>
         </div>
+      </form>
         <hr>
         <table class="table border border-primary table-striped ">
           <thead>
@@ -129,12 +129,47 @@
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" onclick="UpdateUserDetails()">Perbarui</button>
+          <button type="button" class="btn btn-warning" onclick="UpdateUserDetails()" onkeypress="UpdateUserDetails()">Perbarui</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
           <input type="hidden" id="nim">
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal" id="modal-cari">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">EDIT DATA MAHASISWA</h4>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group">
+              <label>NIM</label>
+              <input type="text" class="form-control" name="nim" id="nim" maxlength="9" disabled>
+            </div>
+            <div class="form-group">
+              <label>Nama Mahasiswa</label>
+              <input type="text" class="form-control" name="update_nama" id="nama" maxlength="25">
+            </div>
+            <div class="form-group">
+              <label for="sel1">Jurusan</label>
+              <select class="form-control" name="update_kode_jur" id="update_kode_jur">
+                <option value="TI">Teknik Informatika</option>
+                <option value="SI">Sistem Informasi</option>
+              </select>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" onclick="UpdateUserDetails()" onkeypress="UpdateUserDetails()">Perbarui</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+            <input type="hidden" id="nim">
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
